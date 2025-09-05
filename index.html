@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar Bahasa Paser</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variabel CSS */
+        :root {
+            --primary: #43cea2;
+            --primary-dark: #2d9c7a;
+            --secondary: #ff6a88;
+            --secondary-dark: #d45a74;
+            --accent: #185a9d;
+            --light: #ffffff;
+            --dark: #333333;
+            --gray: #f5f5f5;
+            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Body */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #a8edea, #fed6e3);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: var(--light);
+            text-align: center;
+            padding: 30px 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 1em;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        /* Menu Navigasi */
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .menu a {
+            color: var(--light);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: var(--transition);
+            font-size: 0.9em;
+        }
+
+        .menu a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Main content */
+        main {
+            max-width: 900px;
+            margin: -20px auto 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Section judul */
+        h2 {
+            margin: 25px 0 15px 0;
+            color: var(--accent);
+            font-size: 1.5em;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        /* Kosakata - Card */
+        .word-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 5px solid var(--primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .word-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+
+        .word-card p {
+            font-size: 1.1em;
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .word-card .icon {
+            color: var(--primary);
+            margin-left: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .word-card .icon:hover {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Filter dan Pencarian */
+        .search-container {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .search-box {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 50px;
+            box-shadow: var(--shadow);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1em;
+        }
+
+        .filter-btn {
+            background-color: var(--light);
+            color: var(--dark);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        /* Kuis */
+        .quiz {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+            border-left: 5px solid var(--secondary);
+        }
+
+        .quiz h2 {
+            color: var(--secondary);
+            margin-top: 0;
+        }
+
+        .quiz p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .quiz-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .quiz-button {
+            background-color: var(--primary);
+            color: var(--light);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .quiz-button:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        #quiz-result {
+            font-size: 1.2em;
+            margin-top: 15px;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* Bottom Navigation (seperti aplikasi mobile) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--light);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 0.8em;
+            transition: var(--transition);
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-item i {
+            font-size: 1.4em;
+            margin-bottom: 4px;
+        }
+
+        /* Styling untuk kuis container */
+        .quiz-container {
+            margin-top: 20px;
+        }
+
+        .quiz-card {
+            background-color: var(--light);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+            border-left: 5px solid var(--secondary);
+        }
+
+        .quiz-question {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .quiz-option {
+            background-color: var(--gray);
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: left;
+        }
+
+        .quiz-option:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .quiz-option.correct {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        .quiz-option.incorrect {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .quiz-feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            display: block;
+        }
+
+        .quiz-feedback.incorrect {
+            background-color: #ffebee;
+            color: #c62828;
+            display: block;
+        }
+
+        /* Responsif */
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 1.6em;
+            }
+            
+            header p {
+                font-size: 0.9em;
+            }
+            
+            .word-card p {
+                font-size: 1em;
+            }
+            
+            .quiz-button {
+                min-width: 100%;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            width: 100%;
+            background-color: #f3f3f3;
+            border-radius: 20px;
+            margin: 15px 0;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            background-color: var(--primary);
+            border-radius: 20px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .score-display {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin: 15px 0;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Belajar Bahasa Paser</h1>
+        <p>Pelajari kosakata dasar Bahasa Paser secara interaktif!</p>
+        <!-- Menu Navigasi -->
+        <nav class="menu">
+            <a href="#kosakata">Kosakata</a>
+            <a href="#kuis">Kuis</a>
+            <a href="#tentang">Tentang</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="kosakata">
+            <h2>Kosakata Dasar</h2>
+            
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Cari kosakata...">
+                <button class="filter-btn"><i class="fas fa-filter"></i> Filter</button>
+            </div>
+
+            <div id="word-list">
+                <!-- Kosakata akan dimuat di sini melalui JavaScript -->
+            </div>
+        </section>
+
+        <section id="kuis">
+            <h2>Kuis Bahasa Paser</h2>
+            <p>Uji pengetahuan Anda tentang Bahasa Paser dengan kuis-kuis berikut!</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="quiz-progress"></div>
+            </div>
+            
+            <div class="score-display" id="score-display">Skor: 0/10</div>
+            
+            <div class="quiz-container">
+                <!-- Kuis akan dimuat di sini melalui JavaScript -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="quiz-button" onclick="resetQuiz()" id="reset-btn"><i class="fas fa-redo"></i> Ulangi Kuis</button>
+            </div>
+        </section>
+
+        <section id="tentang">
+            <h2>Tentang Bahasa Paser</h2>
+            <div class="word-card">
+                <p>Bahasa Paser adalah bahasa yang dituturkan oleh Suku Paser di Kalimantan Timur dan Kalimantan Selatan. Bahasa ini termasuk dalam rumpun bahasa Austronesia.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation (seperti aplikasi mobile) -->
+    <nav class="bottom-nav">
+        <a href="#kosakata" class="nav-item active">
+            <i class="fas fa-book"></i>
+            <span>Kosakata</span>
+        </a>
+        <a href="#kuis" class="nav-item">
+            <i class="fas fa-puzzle-piece"></i>
+            <span>Kuis</span>
+        </a>
+        <a href="#tentang" class="nav-item">
+            <i class="fas fa-info-circle"></i>
+            <span>Tentang</span>
+        </a>
+    </nav>
+
+    <script>
+        // Data kosakata Bahasa Paser (100 kata)
+        const vocabulary = [
+            { paser: "Halo", indonesia: "Hai" },
+            { paser: "ise kabar taka", indonesia: "Apa Kabar Anda" },
+            { paser: "Buen", indonesia: "Baik" },
+            { paser: "Matur Suksma", indonesia: "Terima Kasih" },
+            { paser: "Rikap Pagi", indonesia: "Selamat Pagi" },
+            { paser: "Rikap Malam", indonesia: "Selamat Malam" },
+            { paser: "Fahri", indonesia: "Jelek" },
+            { paser: "Sampai jumpa", indonesia: "Dahai" },
+            { paser: "Nama", indonesia: "Adan" },
+            { paser: "Siapa namamu?", indonesia: "Sira adan mu?" },
+            { paser: "Nama saya", indonesia: "Adan ku" },
+            { paser: "Dimana", indonesia: "Diyen" },
+            { paser: "Kapan", indonesia: "Kanti" },
+            { paser: "Apa", indonesia: "Apa" },
+            { paser: "Mengapa", indonesia: "Kenape" },
+            { paser: "Bagaimana", indonesia: "Kaque" },
+            { paser: "Ya", indonesia: "Ehe" },
+            { paser: "Tidak", indonesia: "Ende" },
+            { paser: "Air", indonesia: "Danum" },
+            { paser: "Makan", indonesia: "Kuman" },
+            { paser: "Minum", indonesia: "Inum" },
+            { paser: "Rumah", indonesia: "Rumah" },
+            { paser: "Pergi", indonesia: "Laku" },
+            { paser: "Datang", indonesia: "Dateng" },
+            { paser: "Tidur", indonesia: "Tidur" },
+            { paser: "Bangun", indonesia: "Bangun" },
+            { paser: "Besar", indonesia: "Besar" },
+            { paser: "Kecil", indonesia: "Kecil" },
+            { paser: "Panas", indonesia: "Angat" },
+            { paser: "Dingin", indonesia: "Dingin" },
+            { paser: "Satu", indonesia: "Satu" },
+            { paser: "Dua", indonesia: "Due" },
+            { paser: "Tiga", indonesia: "Telu" },
+            { paser: "Empat", indonesia: "Empat" },
+            { paser: "Lima", indonesia: "Lima" },
+            { paser: "Enam", indonesia: "Enem" },
+            { paser: "Tujuh", indonesia: "Pitu" },
+            { paser: "Delapan", indonesia: "Walu" },
+            { paser: "Sembilan", indonesia: "Siwe" },
+            { paser: "Sepuluh", indonesia: "Sepuluh" },
+            { paser: "Orang", indonesia: "Urang" },
+            { paser: "Laki-laki", indonesia: "Lelaki" },
+            { paser: "Perempuan", indonesia: "Bibinian" },
+            { paser: "Anak", indonesia: "Anak" },
+            { paser: "Ibu", indonesia: "Mama" },
+            { paser: "Bapak", indonesia: "Bapa" },
+            { paser: "Kakek", indonesia: "Nini" },
+            { paser: "Nenek", indonesia: "Nini" },
+            { paser: "Saudara", indonesia: "Padian" },
+            { paser: "Paman", indonesia: "Paman" },
+            { paser: "Bibi", indonesia: "Bibi" },
+            { paser: "Kepala", indonesia: "Ulu" },
+            { paser: "Mata", indonesia: "Mata" },
+            { paser: "Hidung", indonesia: "Irung" },
+            { paser: "Telinga", indonesia: "Kuping" },
+            { paser: "Mulut", indonesia: "Babahan" },
+            { paser: "Tangan", indonesia: "Tangan" },
+            { paser: "Kaki", indonesia: "Batis" },
+            { paser: "Pohon", indonesia: "Punu" },
+            { paser: "Hutan", indonesia: "Hutan" },
+            { paser: "Sungai", indonesia: "Sungai" },
+            { paser: "Laut", indonesia: "Laut" },
+            { paser: "Gunung", indonesia: "Gunung" },
+            { paser: "Matahari", indonesia: "Matahari" },
+            { paser: "Bulan", indonesia: "Bulan" },
+            { paser: "Bintang", indonesia: "Bintang" },
+            { paser: "Hujan", indonesia: "Ujan" },
+            { paser: "Angin", indonesia: "Angin" },
+            { paser: "Api", indonesia: "Api" },
+            { paser: "Tanah", indonesia: "Tanah" },
+            { paser: "Batu", indonesia: "Batu" },
+            { paser: "Pasir", indonesia: "Pasir" },
+            { paser: "Emas", indonesia: "Mas" },
+            { paser: "Perak", indonesia: "Pirak" },
+            { paser: "Harga", indonesia: "Harga" },
+            { paser: "Uang", indonesia: "Pitih" },
+            { paser: "Mahal", indonesia: "Mahal" },
+            { paser: "Murah", indonesia: "Murah" },
+            { paser: "Beli", indonesia: "Beli" },
+            { paser: "Jual", indonesia: "Jual" },
+            { paser: "Beras", indonesia: "Beras" },
+            { paser: "Nasi", indonesia: "Nasi" },
+            { paser: "Sayur", indonesia: "Sayur" },
+            { paser: "Daging", indonesia: "Daging" },
+            { paser: "Ikan", indonesia: "Ikan" },
+            { paser: "Ayam", indonesia: "Manuk" },
+            { paser: "Sapi", indonesia: "Sapi" },
+            { paser: "Kambing", indonesia: "Kambing" },
+            { paser: "Kucing", indonesia: "Kucing" },
+            { paser: "Anjing", indonesia: "Anjing" },
+            { paser: "Burung", indonesia: "Burung" },
+            { paser: "Padi", indonesia: "Padi" },
+            { paser: "Jagung", indonesia: "Jagung" },
+            { paser: "Kopi", indonesia: "Kopi" },
+            { paser: "Teh", indonesia: "Teh" },
+            { paser: "Gula", indonesia: "Gula" },
+            { paser: "Garam", indonesia: "Garam" },
+            { paser: "Asam", indonesia: "Asam" },
+            { paser: "Manis", indonesia: "Manis" },
+            { paser: "Pahit", indonesia: "Pait" },
+            { paser: "Asin", indonesia: "Asin" },
+            { paser: "Pedas", indonesia: "Pedas" }
+        ];
+
+        // Data kuis
+        const quizzes = [
+            {
+                question: "Apa arti kata 'Matur Suksma' dalam Bahasa Indonesia?",
+                options: ["Halo", "Terima Kasih", "Selamat Pagi", "Sampai Jumpa"],
+                correctAnswer: 1
+            },
+            {
+                question: "Bagaimana mengatakan 'Nama saya' dalam Bahasa Paser?",
+                options: ["Sira adan mu", "Adan ku", "Adan", "Nama"],
+                correctAnswer: 1
+            },
+            {
+                question: "Apa bahasa Paser dari kata 'Air'?",
+                options: ["Danum", "Kuman", "Inum", "Batu"],
+                correctAnswer: 0
+            },
+            {
+                question: "Manakah yang berarti 'Rumah' dalam Bahasa Paser?",
+                options: ["Laku", "Rumah", "Punu", "Batis"],
+                correctAnswer: 1
+            },
+            {
+                question: "Apa arti 'Rikap Pagi' dalam Bahasa Indonesia?",
+                options: ["Selamat Pagi", "Selamat Malam", "Selamat Tinggal", "Selamat Datang"],
+                correctAnswer: 0
+            },
+            {
+                question: "Bagaimana mengatakan 'Siapa namamu?' dalam Bahasa Paser?",
+                options: ["Adan ku", "Sira adan mu", "ise kabar taka", "Kanti"],
+                correctAnswer: 1
+            },
+            {
+                question: "Apa bahasa Indonesia dari kata 'Buen'?",
+                options: ["Jelek", "Baik", "Kecil", "Besar"],
+                correctAnswer: 1
+            },
+            {
+                question: "Manakah yang berarti 'Makan' dalam Bahasa Paser?",
+                options: ["Inum", "Kuman", "Tidur", "Laku"],
+                correctAnswer: 1
+            },
+            {
+                question: "Apa bahasa Paser dari angka 'Lima'?",
+                options: ["Telu", "Empat", "Lima", "Pitu"],
+                correctAnswer: 2
+            },
+            {
+                question: "Apa arti 'Dahai' dalam Bahasa Indonesia?",
+                options: ["Halo", "Selamat Pagi", "Sampai Jumpa", "Terima Kasih"],
+                correctAnswer: 2
+            }
+        ];
+
+        // Variabel state kuis
+        let score = 0;
+        let answeredQuestions = 0;
+
+        // Fungsi untuk memuat kosakata
+        function loadVocabulary() {
+            const wordList = document.getElementById('word-list');
+            wordList.innerHTML = '';
+            
+            vocabulary.forEach((word, index) => {
+                const wordCard = document.createElement('div');
+                wordCard.className = 'word-card fade-in';
+                wordCard.style.animationDelay = `${index * 0.05}s`;
+                wordCard.innerHTML = `
+                    <p><strong>${word.paser}</strong> - <em>${word.indonesia}</em></p>
+                    <i class="fas fa-volume-up icon" onclick="speakText('${word.paser}')"></i>
+                `;
+                wordList.appendChild(wordCard);
+            });
+        }
+
+        // Fungsi untuk memuat kuis
+        function loadQuizzes() {
+            const quizContainer = document.querySelector('.quiz-container');
+            quizContainer.innerHTML = '';
+            
+            quizzes.forEach((quiz, index) => {
+                const quizCard = document.createElement('div');
+                quizCard.className = 'quiz-card';
+                quizCard.id = `quiz-${index}`;
+                quizCard.innerHTML = `
+                    <div class="quiz-question">${index + 1}. ${quiz.question}</div>
+                    <div class="quiz-options">
+                        ${quiz.options.map((option, i) => 
+                            `<button class="quiz-option" onclick="checkAnswer(${index}, ${i})">${option}</button>`
+                        ).join('')}
+                    </div>
+                    <div class="quiz-feedback" id="feedback-${index}"></div>
+                `;
+                quizContainer.appendChild(quizCard);
+            });
+            
+            updateProgress();
+        }
+
+        // Fungsi untuk memeriksa jawaban
+        function checkAnswer(quizIndex, selectedOption) {
+            const quiz = quizzes[quizIndex];
+            const feedback = document.getElementById(`feedback-${quizIndex}`);
+            const options = document.querySelectorAll(`#quiz-${quizIndex} .quiz-option`);
+            
+            // Nonaktifkan semua opsi setelah menjawab
+            options.forEach(option => {
+                option.disabled = true;
+            });
+            
+            // Tandai jawaban yang benar dan salah
+            options[quiz.correctAnswer].classList.add('correct');
+            
+            if (selectedOption !== quiz.correctAnswer) {
+                options[selectedOption].classList.add('incorrect');
+                feedback.textContent = `Salah! Jawaban yang benar: ${quiz.options[quiz.correctAnswer]}`;
+                feedback.className = "quiz-feedback incorrect";
+            } else {
+                feedback.textContent = "Benar! 🎉";
+                feedback.className = "quiz-feedback correct";
+                score++;
+            }
+            
+            // Perbarui progress
+            answeredQuestions++;
+            updateProgress();
+            
+            // Perbarui skor
+            document.getElementById('score-display').textContent = `Skor: ${score}/${quizzes.length}`;
+        }
+
+        // Fungsi untuk memperbarui progress bar
+        function updateProgress() {
+            const progress = (answeredQuestions / quizzes.length) * 100;
+            document.getElementById('quiz-progress').style.width = `${progress}%`;
+        }
+
+        // Fungsi untuk mereset kuis
+        function resetQuiz() {
+            score = 0;
+            answeredQuestions = 0;
+            document.getElementById('score-display').textContent = `Skor: 0/${quizzes.length}`;
+            updateProgress();
+            loadQuizzes();
+        }
+
+        // Fungsi untuk text-to-speech
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'id-ID';
+                speechSynthesis.speak(utterance);
+            } else {
+                alert("Browser Anda tidak mendukung fitur text-to-speech");
+            }
+        }
+
+        // Fungsi untuk mencari kosakata
+        function searchVocabulary() {
+            const searchTerm = document.querySelector('.search-box').value.toLowerCase();
+            const wordList = document.getElementById('word-list');
+            wordList.innerHTML = '';
+            
+            const filteredVocabulary = vocabulary.filter(word => 
+                word.paser.toLowerCase().includes(searchTerm) || 
+                word.indonesia.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filteredVocabulary.length === 0) {
+                wordList.innerHTML = '<div class="word-card"><p>Tidak ada hasil ditemukan</p></div>';
+                return;
+            }
+            
+            filteredVocabulary.forEach((word, index) => {
+                const wordCard = document.createElement('div');
+                wordCard.className = 'word-card fade-in';
+                wordCard.style.animationDelay = `${index * 0.05}s`;
+                wordCard.innerHTML = `
+                    <p><strong>${word.paser}</strong> - <em>${word.indonesia}</em></p>
+                    <i class="fas fa-volume-up icon" onclick="speakText('${word.paser}')"></i>
+                `;
+                wordList.appendChild(wordCard);
+            });
+        }
+
+        // Fungsi untuk navigasi bottom nav
+        function setupBottomNav() {
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Hapus kelas active dari semua item
+                    navItems.forEach(i => i.classList.remove('active'));
+                    // Tambahkan kelas active ke item yang diklik
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        // Event listeners setelah halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            loadVocabulary();
+            loadQuizzes();
+            setupBottomNav();
+            
+            // Setup pencarian
+            const searchBox = document.querySelector('.search-box');
+            searchBox.addEventListener('input', searchVocabulary);
+            
+            // Setup filter button
+            const filterBtn = document.querySelector('.filter-btn');
+            filterBtn.addEventListener('click', function() {
+                alert('Fitur filter akan segera hadir!');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Variabel CSS */
+:root {
+    --primary: #43cea2;
+    --primary-dark: #2d9c7a;
+    --secondary: #ff6a88;
+    --secondary-dark: #d45a74;
+    --accent: #185a9d;
+    --light: #ffffff;
+    --dark: #333333;
+    --gray: #f5f5f5;
+    --shadow: 0 4px 15px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
+
+/* Body */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    color: var(--dark);
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    color: var(--light);
+    text-align: center;
+    padding: 30px 20px;
+    box-shadow: var(--shadow);
+    position: relative;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+header h1 {
+    font-size: 1.8em;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+header p {
+    font-size: 1em;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+/* Menu Navigasi */
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.menu a {
+    color: var(--light);
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: var(--transition);
+    font-size: 0.9em;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Main content */
+main {
+    max-width: 900px;
+    margin: -20px auto 20px auto;
+    padding: 0 15px;
+}
+
+/* Section judul */
+h2 {
+    margin: 25px 0 15px 0;
+    color: var(--accent);
+    font-size: 1.5em;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--primary);
+}
+
+/* Kosakata - Card */
+.word-card {
+    background-color: var(--light);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 15px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border-left: 5px solid var(--primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.word-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+.word-card p {
+    font-size: 1.1em;
+    font-weight: 500;
+    flex: 1;
+}
+
+.word-card .icon {
+    color: var(--primary);
+    margin-left: 10px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.word-card .icon:hover {
+    color: var(--accent);
+    transform: scale(1.1);
+}
+
+/* Filter dan Pencarian */
+.search-container {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.search-box {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+}
+
+.filter-btn {
+    background-color: var(--light);
+    color: var(--dark);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: var(--transition);
+}
+
+.filter-btn:hover {
+    background-color: var(--primary);
+    color: var(--light);
+}
+
+/* Kuis */
+.quiz {
+    background-color: var(--light);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    margin-top: 30px;
+    border-left: 5px solid var(--secondary);
+}
+
+.quiz h2 {
+    color: var(--secondary);
+    margin-top: 0;
+}
+
+.quiz p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.quiz-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.quiz-button {
+    background-color: var(--primary);
+    color: var(--light);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: var(--transition);
+    flex: 1;
+    min-width: 120px;
+}
+
+.quiz-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+#quiz-result {
+    font-size: 1.2em;
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Bottom Navigation (seperti aplikasi mobile) */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--light);
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--dark);
+    font-size: 0.8em;
+    transition: var(--transition);
+}
+
+.nav-item.active {
+    color: var(--primary);
+}
+
+.nav-item i {
+    font-size: 1.4em;
+    margin-bottom: 4px;
+}
+
+/* Responsif */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 1.6em;
+    }
+    
+    header p {
+        font-size: 0.9em;
+    }
+    
+    .word-card p {
+        font-size: 1em;
+    }
+    
+    .quiz-button {
+        min-width: 100%;
+    }
+    
+    .search-container {
+        flex-direction: column;
+    }
+}
+
+/* Animasi */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
